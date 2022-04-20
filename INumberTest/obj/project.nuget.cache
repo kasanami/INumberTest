@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "BVHLNgdoOAzsbtRaXgrxuOahIGf9evOyBifvKUXT4lFOFbWMLL6D9bgqSRMJPgG9moOKQfLz2pRErWRagJg01g==",
+  "success": true,
+  "projectFilePath": "D:\\Develop\\TestProjects\\INumberTest\\INumberTest\\INumberTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bigta\\.nuget\\packages\\system.runtime.experimental\\6.0.2\\system.runtime.experimental.6.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

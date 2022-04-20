@@ -1,0 +1,15 @@
+D:\Develop\TestProjects\INumberTest\INumberTest\bin\Debug\net6.0\INumberTest.exe
+D:\Develop\TestProjects\INumberTest\INumberTest\bin\Debug\net6.0\INumberTest.deps.json
+D:\Develop\TestProjects\INumberTest\INumberTest\bin\Debug\net6.0\INumberTest.runtimeconfig.json
+D:\Develop\TestProjects\INumberTest\INumberTest\bin\Debug\net6.0\INumberTest.dll
+D:\Develop\TestProjects\INumberTest\INumberTest\bin\Debug\net6.0\INumberTest.pdb
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.csproj.AssemblyReference.cache
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.GeneratedMSBuildEditorConfig.editorconfig
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.AssemblyInfoInputs.cache
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.AssemblyInfo.cs
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.csproj.CoreCompileInputs.cache
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.dll
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\refint\INumberTest.dll
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.pdb
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\INumberTest.genruntimeconfig.cache
+D:\Develop\TestProjects\INumberTest\INumberTest\obj\Debug\net6.0\ref\INumberTest.dll
