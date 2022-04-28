@@ -58,6 +58,35 @@ namespace INumberTest.Tests
             Assert.IsTrue(vector1.GetHashCode() == vector2.GetHashCode());
             Assert.IsTrue(vector1.GetHashCode() != vector3.GetHashCode());
         }
+
+        [TestMethod()]
+        public void DotTest()
+        {
+            {
+                var vector1 = new Vector3<double>(1, 1, 1);
+                var vector2 = new Vector3<double>(1, 1, 1);
+                Assert.AreEqual(3.0, Vector3<double>.Dot(vector1, vector2));
+            }
+
+            {
+                var vector1 = new Vector3<double>(1, 1, 1);
+                var vector2 = new Vector3<double>(-1, -1, -1);
+                Assert.AreEqual(-3.0, Vector3<double>.Dot(vector1, vector2));
+            }
+        }
+
+        [TestMethod()]
+        public void CrossTest()
+        {
+            {
+                var vector1 = new Vector3<double>(1, 0, 0);
+                var vector2 = new Vector3<double>(0, 1, 0);
+                var vector3 = new Vector3<double>(0, 0, 1);
+                Assert.AreEqual(vector1, Vector3<double>.Cross(vector2, vector3));
+                Assert.AreEqual(vector2, Vector3<double>.Cross(vector3, vector1));
+                Assert.AreEqual(vector3, Vector3<double>.Cross(vector1, vector2));
+            }
+        }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります
 }

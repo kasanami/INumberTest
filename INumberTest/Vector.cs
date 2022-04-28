@@ -9,7 +9,7 @@ namespace INumberTest
     /// <summary>
     /// ベクトル
     /// </summary>
-    public struct Vector3<T>:
+    public struct Vector3<T> :
         IAdditiveIdentity<Vector3<T>, Vector3<T>>,
         IMultiplicativeIdentity<Vector3<T>, Vector3<T>>,
         IUnaryPlusOperators<Vector3<T>, Vector3<T>>,
@@ -161,6 +161,23 @@ namespace INumberTest
             Y /= magnitude;
             Z /= magnitude;
             return this;
+        }
+        /// <summary>
+        /// 内積
+        /// </summary>
+        public static T Dot(Vector3<T> left, Vector3<T> right)
+        {
+            return left.X * right.X + left.Y * right.Y + left.Z * right.Z;
+        }
+        /// <summary>
+        /// 外積
+        /// </summary>
+        public static Vector3<T> Cross(Vector3<T> left, Vector3<T> right)
+        {
+            var x = left.Y * right.Z - left.Z * right.Y;
+            var y = left.Z * right.X - left.X * right.Z;
+            var z = left.X * right.Y - left.Y * right.X;
+            return new Vector3<T>(x, y, z);
         }
     }
 }
