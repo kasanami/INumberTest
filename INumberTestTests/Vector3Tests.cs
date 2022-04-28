@@ -38,6 +38,26 @@ namespace INumberTest.Tests
             Assert.AreEqual(0.57735026918962573, vector.Y);
             Assert.AreEqual(0.57735026918962573, vector.Z);
         }
+
+        [TestMethod()]
+        public void EqualsTest()
+        {
+            var vector1 = new Vector3<double>(1, 1, 1);
+            var vector2 = new Vector3<double>(1, 1, 1);
+            var vector3 = new Vector3<double>(1, 1, 2);
+            Assert.IsTrue(vector1.Equals(vector2));
+            Assert.IsFalse(vector1.Equals(vector3));
+        }
+
+        [TestMethod()]
+        public void GetHashCodeTest()
+        {
+            var vector1 = new Vector3<double>(1, 1, 1);
+            var vector2 = new Vector3<double>(1, 1, 1);
+            var vector3 = new Vector3<double>(1, 1, 2);
+            Assert.IsTrue(vector1.GetHashCode() == vector2.GetHashCode());
+            Assert.IsTrue(vector1.GetHashCode() != vector3.GetHashCode());
+        }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります
 }

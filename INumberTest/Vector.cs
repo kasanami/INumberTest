@@ -137,7 +137,17 @@ namespace INumberTest
         {
             return $"{nameof(Vector3<T>)}{{ X={X},Y={Y},Z={Z} }}";
         }
+#pragma warning disable CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
+        public override bool Equals(object obj)
+        {
+            return obj is Vector3<T> && Equals((Vector3<T>)obj);
+        }
+#pragma warning restore CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
 
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
+        }
         #endregion 継承
 
         /// <summary>
