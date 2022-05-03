@@ -21,18 +21,19 @@ namespace INumberTest
         IModulusOperators<Vector3<T>, T, Vector3<T>>,
         IEquatable<Vector3<T>>,
         IEqualityOperators<Vector3<T>, Vector3<T>>
-        where T : INumber<T>
+        where T : IFloatingPoint<T>
+        //where T : INumber<T>
     {
         #region プロパティ
-        public T X { get; private set; }
-        public T Y { get; private set; }
-        public T Z { get; private set; }
+        public T X { get; set; }
+        public T Y { get; set; }
+        public T Z { get; set; }
         /// <summary>
         /// 大きさ
         /// </summary>
-        public T Magnitude => Math<T>.Sqrt(SquaredMagnitude);
+        public T Magnitude => T.Sqrt(SquaredMagnitude);
         /// <summary>
-        /// 大きさの2乗した値
+        /// 大きさを2乗した値
         /// </summary>
         public T SquaredMagnitude => X * X + Y * Y + Z * Z;
         /// <summary>
@@ -42,6 +43,18 @@ namespace INumberTest
         #endregion プロパティ
 
         #region コンストラクタ
+        /// <summary>
+        /// 各要素を 0 で初期化
+        /// </summary>
+        public Vector3()
+        {
+            X = T.Zero;
+            Y = T.Zero;
+            Z = T.Zero;
+        }
+        /// <summary>
+        /// 各要素を指定した値で初期化
+        /// </summary>
         public Vector3(T x, T y, T z)
         {
             X = x;
@@ -153,24 +166,22 @@ namespace INumberTest
         /// <summary>
         /// このインスタンスを正規化する。
         /// </summary>
-        /// <returns>このインスタンス</returns>
-        public Vector3<T> Normalize()
+        public void Normalize()
         {
             var magnitude = Magnitude;
             X /= magnitude;
             Y /= magnitude;
             Z /= magnitude;
-            return this;
         }
         /// <summary>
-        /// 内積
+        /// 内積を計算します。
         /// </summary>
         public static T Dot(Vector3<T> left, Vector3<T> right)
         {
             return left.X * right.X + left.Y * right.Y + left.Z * right.Z;
         }
         /// <summary>
-        /// 外積
+        /// 外積を計算します。
         /// </summary>
         public static Vector3<T> Cross(Vector3<T> left, Vector3<T> right)
         {

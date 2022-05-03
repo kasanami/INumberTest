@@ -1,6 +1,17 @@
 ﻿
 using INumberTest;
 
+
+static void Test<T>() where T : IFloatingPoint<T>
+{
+    Console.WriteLine("Test");
+    Console.WriteLine($"{typeof(T).Name}.Tau={T.Tau}");
+}
+
+Test<Half>();
+Test<float>();
+Test<double>();
+
 //PowTest();
 //MachinsFormulaTest();
 //PointTest();
@@ -112,12 +123,13 @@ static void MachinsFormulaTest()
 static void VectorTest()
 {
     //_VectorTest<int>();
+    _VectorTest<Half>();
     _VectorTest<float>();
     _VectorTest<double>();
-    _VectorTest<decimal>();
+    //_VectorTest<decimal>();
 }
 
-static void _VectorTest<T>() where T:INumber<T>
+static void _VectorTest<T>() where T:IFloatingPoint<T>
 {
     Console.WriteLine($"_VectorTest <{typeof(T).Name}>");
 
