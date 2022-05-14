@@ -9,6 +9,20 @@ namespace INumberTest
     public class Math<T> where T : INumber<T>
     {
         /// <summary>
+        /// 合計を計算する
+        /// </summary>
+        /// <param name="values">合計する値</param>
+        /// <returns>合計値</returns>
+        public static T Sum(IEnumerable<T> values)
+        {
+            T sum = T.AdditiveIdentity;
+            foreach (var value in values)
+            {
+                sum += value;
+            }
+            return sum;
+        }
+        /// <summary>
         /// 指定された数値の平方根を返します。
         /// </summary>
         /// <param name="value">平方根を求める対象の数値。</param>
