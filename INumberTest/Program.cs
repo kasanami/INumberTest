@@ -122,6 +122,7 @@ static void MachinsFormulaTest()
 
 static void VectorTest()
 {
+    //IBinaryNumber
     //_VectorTest<int>();
     _VectorTest<Half>();
     _VectorTest<float>();

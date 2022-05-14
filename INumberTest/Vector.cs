@@ -7,27 +7,45 @@ using System.Threading.Tasks;
 namespace INumberTest
 {
     /// <summary>
-    /// ベクトル
+    /// N次元ベクトル
     /// </summary>
-    public struct Vector3<T> :
-        IAdditiveIdentity<Vector3<T>, Vector3<T>>,
-        IMultiplicativeIdentity<Vector3<T>, Vector3<T>>,
-        IUnaryPlusOperators<Vector3<T>, Vector3<T>>,
-        IUnaryNegationOperators<Vector3<T>, Vector3<T>>,
-        IAdditionOperators<Vector3<T>, Vector3<T>, Vector3<T>>,
-        ISubtractionOperators<Vector3<T>, Vector3<T>, Vector3<T>>,
-        IMultiplyOperators<Vector3<T>, T, Vector3<T>>,
-        IDivisionOperators<Vector3<T>, T, Vector3<T>>,
-        IModulusOperators<Vector3<T>, T, Vector3<T>>,
-        IEquatable<Vector3<T>>,
-        IEqualityOperators<Vector3<T>, Vector3<T>>
+    public struct Vector<T> :
+        IAdditiveIdentity<Vector<T>, Vector<T>>,
+        IMultiplicativeIdentity<Vector<T>, Vector<T>>,
+        IUnaryPlusOperators<Vector<T>, Vector<T>>,
+        IUnaryNegationOperators<Vector<T>, Vector<T>>,
+        IAdditionOperators<Vector<T>, Vector<T>, Vector<T>>,
+        ISubtractionOperators<Vector<T>, Vector<T>, Vector<T>>,
+        IMultiplyOperators<Vector<T>, T, Vector<T>>,
+        IDivisionOperators<Vector<T>, T, Vector<T>>,
+        IModulusOperators<Vector<T>, T, Vector<T>>,
+        IEquatable<Vector<T>>,
+        IEqualityOperators<Vector<T>, Vector<T>>
         where T : IFloatingPoint<T>
         //where T : INumber<T>
     {
+
+        List<T> values = new List<T>();
         #region プロパティ
-        public T X { get; set; }
-        public T Y { get; set; }
-        public T Z { get; set; }
+        public IEnumerable<T> Values => values;
+        /// <summary>
+        /// 次元数
+        /// </summary>
+        public int Rank=> values.Count;
+        /// <summary>
+        /// 指定した要素を取得する
+        /// </summary>
+        public T this[int index]
+        {
+            get
+            {
+                return values[index];
+            }
+            set
+            {
+                values[index] = value;
+            }
+        }
         /// <summary>
         /// 大きさ
         /// </summary>
@@ -35,131 +53,184 @@ namespace INumberTest
         /// <summary>
         /// 大きさを2乗した値
         /// </summary>
-        public T SquaredMagnitude => X * X + Y * Y + Z * Z;
+        public T SquaredMagnitude => Math<T>.Sum(values.Select((item) => item * item));
         /// <summary>
         /// 正規化した値を返す。
         /// </summary>
-        public Vector3<T> Normalized => this / Magnitude;
+        public Vector<T> Normalized => this / Magnitude;
         #endregion プロパティ
 
         #region コンストラクタ
         /// <summary>
-        /// 各要素を 0 で初期化
+        /// 次元数 0 で初期化
         /// </summary>
-        public Vector3()
+        public Vector()
         {
-            X = T.Zero;
-            Y = T.Zero;
-            Z = T.Zero;
         }
         /// <summary>
-        /// 各要素を指定した値で初期化
+        /// 3次元ベクトルとして、指定した値で初期化
         /// </summary>
-        public Vector3(T x, T y, T z)
+        public Vector(T x, T y, T z)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            values = new List<T>(3);
+            values[0] = x;
+            values[1] = y;
+            values[2] = z;
+        }
+        /// <summary>
+        /// コピーコンストラクタ
+        /// </summary>
+        public Vector(Vector<T> source)
+        {
+            values = new List<T>(source.Values);
         }
         #endregion コンストラクタ
 
         #region 継承
-        public static Vector3<T> AdditiveIdentity =>
-            new Vector3<T>(T.AdditiveIdentity, T.AdditiveIdentity, T.AdditiveIdentity);
-        public static Vector3<T> MultiplicativeIdentity =>
-            new Vector3<T>(T.MultiplicativeIdentity, T.MultiplicativeIdentity, T.MultiplicativeIdentity);
+        public static Vector<T> AdditiveIdentity =>
+            new Vector<T>(T.AdditiveIdentity, T.AdditiveIdentity, T.AdditiveIdentity);
+        public static Vector<T> MultiplicativeIdentity =>
+            new Vector<T>(T.MultiplicativeIdentity, T.MultiplicativeIdentity, T.MultiplicativeIdentity);
 
-        public static Vector3<T> operator +(Vector3<T> value) => value;
+        public static Vector<T> operator +(Vector<T> value) => value;
 
-        public static Vector3<T> operator +(Vector3<T> left, Vector3<T> right) =>
-            left with
-            {
-                X = left.X + right.X,
-                Y = left.Y + right.Y,
-                Z = left.Z + right.Z
-            };
-
-        public static Vector3<T> operator -(Vector3<T> value) =>
-            value with
-            {
-                X = -value.X,
-                Y = -value.Y,
-                Z = -value.Z
-            };
-
-        public static Vector3<T> operator -(Vector3<T> left, Vector3<T> right) =>
-            left with
-            {
-                X = left.X - right.X,
-                Y = left.Y - right.Y,
-                Z = left.Z - right.Z
-            };
-
-        public static Vector3<T> operator *(Vector3<T> left, T right) =>
-            left with
-            {
-                X = left.X * right,
-                Y = left.Y * right,
-                Z = left.Z * right
-            };
-
-        public static Vector3<T> operator /(Vector3<T> left, T right) =>
-            left with
-            {
-                X = left.X / right,
-                Y = left.Y / right,
-                Z = left.Z / right
-            };
-
-        public static Vector3<T> operator %(Vector3<T> left, T right) =>
-            left with
-            {
-                X = left.X % right,
-                Y = left.Y % right,
-                Z = left.Z % right
-            };
-
-        public bool Equals(Vector3<T> other)
+        public static Vector<T> operator +(Vector<T> left, Vector<T> right)
         {
-            if (other.X != X)
+            if (left.Rank > right.Rank)
+            {
+                var temp = new Vector<T>(left);
+                for (int i = 0; i < right.Rank; i++)
+                {
+                    temp[i] += right[i];
+                }
+                return temp;
+            }
+            else
+            {
+                var temp = new Vector<T>(right);
+                for (int i = 0; i < left.Rank; i++)
+                {
+                    temp[i] += left[i];
+                }
+                return temp;
+            }
+        }
+
+        public static Vector<T> operator -(Vector<T> value)
+        {
+            var temp = new Vector<T>(value);
+            for (int i = 0; i < temp.values.Count; i++)
+            {
+                temp.values[i] = -temp.values[i];
+            }
+            return temp;
+        }
+
+        public static Vector<T> operator -(Vector<T> left, Vector<T> right)
+        {
+            if (left.Rank > right.Rank)
+            {
+                var temp = new Vector<T>(left);
+                for (int i = 0; i < right.Rank; i++)
+                {
+                    temp[i] -= right[i];
+                }
+                return temp;
+            }
+            else
+            {
+                var temp = new Vector<T>(right);
+                for (int i = 0; i < left.Rank; i++)
+                {
+                    temp[i] -= left[i];
+                }
+                return temp;
+            }
+        }
+
+        public static Vector<T> operator *(Vector<T> left, T right)
+        {
+            var temp = new Vector<T>(left);
+            for (int i = 0; i < temp.Rank; i++)
+            {
+                temp[i] *= right;
+            }
+            return temp;
+        }
+
+        public static Vector<T> operator /(Vector<T> left, T right)
+        {
+            var temp = new Vector<T>(left);
+            for (int i = 0; i < temp.Rank; i++)
+            {
+                temp[i] /= right;
+            }
+            return temp;
+        }
+
+        public static Vector<T> operator %(Vector<T> left, T right)
+        {
+            var temp = new Vector<T>(left);
+            for (int i = 0; i < temp.Rank; i++)
+            {
+                temp[i] %= right;
+            }
+            return temp;
+        }
+
+        public bool Equals(Vector<T> other)
+        {
+            if (Rank != other.Rank)
             {
                 return false;
             }
-            if (other.Y != Y)
+            for (int i = 0; i < Rank; i++)
             {
-                return false;
-            }
-            if (other.Z != Z)
-            {
-                return false;
+                if (values[i] != other[i])
+                {
+                    return false;
+                }
             }
             return true;
         }
 
-        public static bool operator ==(Vector3<T> left, Vector3<T> right)
+        public static bool operator ==(Vector<T> left, Vector<T> right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Vector3<T> left, Vector3<T> right)
+        public static bool operator !=(Vector<T> left, Vector<T> right)
         {
             return !left.Equals(right);
         }
 
         public override string ToString()
         {
-            return $"{nameof(Vector3<T>)}{{ X={X},Y={Y},Z={Z} }}";
+            var temp = new StringBuilder();
+            temp.AppendLine($"{nameof(Vector<T>)}");
+            temp.AppendLine("(");
+            foreach (var value in values)
+            {
+                temp.AppendLine($"{value},");
+            }
+            temp.AppendLine("}");
+            return temp.ToString();
         }
 #pragma warning disable CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
         public override bool Equals(object obj)
         {
-            return obj is Vector3<T> && Equals((Vector3<T>)obj);
+            return obj is Vector<T> && Equals((Vector<T>)obj);
         }
 #pragma warning restore CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
 
         public override int GetHashCode()
         {
-            return X.GetHashCode() ^ Y.GetHashCode() ^ Z.GetHashCode();
+            int temp = Rank.GetHashCode();
+            foreach (var value in values)
+            {
+                temp ^= value.GetHashCode();
+            }
+            return temp;
         }
         #endregion 継承
 
@@ -168,27 +239,37 @@ namespace INumberTest
         /// </summary>
         public void Normalize()
         {
-            var magnitude = Magnitude;
-            X /= magnitude;
-            Y /= magnitude;
-            Z /= magnitude;
+            this /= Magnitude;
         }
         /// <summary>
         /// 内積を計算します。
         /// </summary>
-        public static T Dot(Vector3<T> left, Vector3<T> right)
+        public static T Dot(Vector<T> left, Vector<T> right)
         {
-            return left.X * right.X + left.Y * right.Y + left.Z * right.Z;
+            var temp = new Vector<T>(left);
+            for (int i = 0; i < right.Rank; i++)
+            {
+                temp[i] *= right[i];
+            }
+            return Math<T>.Sum(temp.values);
         }
         /// <summary>
-        /// 外積を計算します。
+        /// 3次元としての外積を計算します。
         /// </summary>
-        public static Vector3<T> Cross(Vector3<T> left, Vector3<T> right)
+        public static Vector3<T> Cross3(Vector<T> left, Vector<T> right)
         {
-            var x = left.Y * right.Z - left.Z * right.Y;
-            var y = left.Z * right.X - left.X * right.Z;
-            var z = left.X * right.Y - left.Y * right.X;
-            return new Vector3<T>(x, y, z);
+            return Vector3<T>.Cross((Vector3<T>)left, (Vector3<T>)right);
         }
+
+        #region 型変換
+        public static explicit operator Vector3<T>(Vector<T> source)
+        {
+            var result = new Vector3<T>();
+            result.X = source.Rank > 0 ? source[0] : T.Zero;
+            result.Y = source.Rank > 1 ? source[1] : T.Zero;
+            result.Z = source.Rank > 2 ? source[2] : T.Zero;
+            return result;
+        }
+        #endregion 型変換
     }
 }

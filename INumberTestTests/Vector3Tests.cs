@@ -12,11 +12,12 @@ namespace INumberTest.Tests
     [TestClass()]
     public class Vector3Tests
     {
+        const double Delta = 0.000000000000001;
         [TestMethod()]
         public void MagnitudeTest()
         {
             var vector = new Vector3<double>(1, 1, 1);
-            Assert.AreEqual(1.7320508075688774, vector.Magnitude);
+            Assert.AreEqual(1.7320508075688774, vector.Magnitude, Delta);
         }
 
         [TestMethod()]
@@ -32,11 +33,11 @@ namespace INumberTest.Tests
         [TestMethod()]
         public void NormalizedTest()
         {
-            var vector = new Vector3<double>(1,1,1);
+            var vector = new Vector3<double>(1, 1, 1);
             vector.Normalize();
-            Assert.AreEqual(0.57735026918962573, vector.X);
-            Assert.AreEqual(0.57735026918962573, vector.Y);
-            Assert.AreEqual(0.57735026918962573, vector.Z);
+            Assert.AreEqual(0.57735026918962573, vector.X, Delta);
+            Assert.AreEqual(0.57735026918962573, vector.Y, Delta);
+            Assert.AreEqual(0.57735026918962573, vector.Z, Delta);
         }
 
         [TestMethod()]
