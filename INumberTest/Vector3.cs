@@ -24,6 +24,11 @@ namespace INumberTest
         where T : IFloatingPoint<T>
         //where T : INumber<T>
     {
+        /// <summary>
+        /// 次元数
+        /// </summary>
+        public const int Rank = 3;
+
         #region プロパティ
         public T X { get; set; }
         public T Y { get; set; }

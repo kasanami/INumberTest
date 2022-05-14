@@ -24,14 +24,12 @@ namespace INumberTest
         where T : IFloatingPoint<T>
         //where T : INumber<T>
     {
-
-        List<T> values = new List<T>();
         #region プロパティ
-        public IEnumerable<T> Values => values;
+        public List<T> Values = new List<T>();
         /// <summary>
         /// 次元数
         /// </summary>
-        public int Rank=> values.Count;
+        public int Rank => Values.Count;
         /// <summary>
         /// 指定した要素を取得する
         /// </summary>
@@ -39,11 +37,11 @@ namespace INumberTest
         {
             get
             {
-                return values[index];
+                return Values[index];
             }
             set
             {
-                values[index] = value;
+                Values[index] = value;
             }
         }
         /// <summary>
@@ -53,7 +51,7 @@ namespace INumberTest
         /// <summary>
         /// 大きさを2乗した値
         /// </summary>
-        public T SquaredMagnitude => Math<T>.Sum(values.Select((item) => item * item));
+        public T SquaredMagnitude => Math<T>.Sum(Values.Select((item) => item * item));
         /// <summary>
         /// 正規化した値を返す。
         /// </summary>
@@ -72,17 +70,26 @@ namespace INumberTest
         /// </summary>
         public Vector(T x, T y, T z)
         {
-            values = new List<T>(3);
-            values[0] = x;
-            values[1] = y;
-            values[2] = z;
+            Values.Add(x);
+            Values.Add(y);
+            Values.Add(z);
         }
         /// <summary>
         /// コピーコンストラクタ
         /// </summary>
         public Vector(Vector<T> source)
         {
-            values = new List<T>(source.Values);
+            Values = new List<T>(source.Values);
+        }
+        /// <summary>
+        /// コピーコンストラクタ
+        /// </summary>
+        public Vector(Vector3<T> source)
+        {
+            Values = new List<T>(Vector3<T>.Rank);
+            Values.Add(source.X);
+            Values.Add(source.Y);
+            Values.Add(source.Z);
         }
         #endregion コンストラクタ
 
@@ -119,9 +126,9 @@ namespace INumberTest
         public static Vector<T> operator -(Vector<T> value)
         {
             var temp = new Vector<T>(value);
-            for (int i = 0; i < temp.values.Count; i++)
+            for (int i = 0; i < temp.Values.Count; i++)
             {
-                temp.values[i] = -temp.values[i];
+                temp.Values[i] = -temp.Values[i];
             }
             return temp;
         }
@@ -186,7 +193,7 @@ namespace INumberTest
             }
             for (int i = 0; i < Rank; i++)
             {
-                if (values[i] != other[i])
+                if (Values[i] != other[i])
                 {
                     return false;
                 }
@@ -207,13 +214,13 @@ namespace INumberTest
         public override string ToString()
         {
             var temp = new StringBuilder();
-            temp.AppendLine($"{nameof(Vector<T>)}");
-            temp.AppendLine("(");
-            foreach (var value in values)
+            temp.Append($"{nameof(Vector<T>)}");
+            temp.Append("{");
+            foreach (var value in Values)
             {
-                temp.AppendLine($"{value},");
+                temp.Append($"{value},");
             }
-            temp.AppendLine("}");
+            temp.Append("}");
             return temp.ToString();
         }
 #pragma warning disable CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
@@ -226,7 +233,7 @@ namespace INumberTest
         public override int GetHashCode()
         {
             int temp = Rank.GetHashCode();
-            foreach (var value in values)
+            foreach (var value in Values)
             {
                 temp ^= value.GetHashCode();
             }
@@ -251,7 +258,7 @@ namespace INumberTest
             {
                 temp[i] *= right[i];
             }
-            return Math<T>.Sum(temp.values);
+            return Math<T>.Sum(temp.Values);
         }
         /// <summary>
         /// 3次元としての外積を計算します。
@@ -262,6 +269,10 @@ namespace INumberTest
         }
 
         #region 型変換
+        public static implicit operator Vector<T>(Vector3<T> source)
+        {
+            return new Vector<T>(source);
+        }
         public static explicit operator Vector3<T>(Vector<T> source)
         {
             var result = new Vector3<T>();

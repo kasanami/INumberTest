@@ -13,6 +13,16 @@ namespace INumberTest.Tests
     public class MathTests
     {
         [TestMethod()]
+        public void SumTest()
+        {
+            var a = Math<float>.Sum(new float[] { 1, 2, 3 });
+            Assert.AreEqual(6f, a);
+            var b = Math<double>.Sum(new double[] { 1, 2, 3 });
+            Assert.AreEqual(6d, b);
+            var c = Math<decimal>.Sum(new decimal[] { 1, 2, 3 });
+            Assert.AreEqual(6m, c);
+        }
+        [TestMethod()]
         public void SqrtTest()
         {
             var a = Math<float>.Sqrt(2);
