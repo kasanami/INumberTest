@@ -21,8 +21,7 @@ namespace INumberTest
         IModulusOperators<Vector2<T>, T, Vector2<T>>,
         IEquatable<Vector2<T>>,
         IEqualityOperators<Vector2<T>, Vector2<T>>
-        where T : IFloatingPoint<T>
-        //where T : INumber<T>
+        where T : INumber<T>
     {
         /// <summary>
         /// 次元数
@@ -35,7 +34,7 @@ namespace INumberTest
         /// <summary>
         /// 大きさ
         /// </summary>
-        public T Magnitude => T.Sqrt(SquaredMagnitude);
+        public T Magnitude => Math<T>.Sqrt(SquaredMagnitude);
         /// <summary>
         /// 大きさを2乗した値
         /// </summary>

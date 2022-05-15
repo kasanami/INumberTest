@@ -29,7 +29,7 @@ namespace INumberTest
         /// <returns>戻り値 0 または正 d の正の平方根。</returns>
         public static T Sqrt(T value)
         {
-            return Sqrt(value, 100, 100);
+            return Sqrt(value, 100, int.MaxValue);
         }
         /// <summary>
         /// 指定された数値の平方根を返します。
@@ -46,15 +46,17 @@ namespace INumberTest
             }
             var temp = value;
             var prev = value;
+            var prev2 = value;
             var _2 = T.Create(2);
             for (int i = 0; i < count; i++)
             {
                 temp = (temp * temp + value) / (_2 * temp);
                 // 前回から値が変わっていないなら終了
-                if (prev == temp)
+                if (prev == temp || prev2 == temp)
                 {
                     return temp;
                 }
+                prev2 = prev;
                 prev = temp;
             }
             return temp;

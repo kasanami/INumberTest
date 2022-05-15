@@ -12,10 +12,31 @@ Test<Half>();
 Test<float>();
 Test<double>();
 
+MathTest();
 //PowTest();
 //MachinsFormulaTest();
 //PointTest();
 VectorTest();
+
+
+static void MathTest()
+{
+    // Sqrt
+    for (int i = 0; i < 100; i++)
+    {
+        var s = Math<int>.Sqrt(i);
+        Console.WriteLine($"{s}^2={i}");
+    }
+    {
+        var _1 = Math<int>.Sqrt(1);
+        var _2 = Math<int>.Sqrt(4);
+        var _3 = Math<int>.Sqrt(9);
+        var _X = Math<int>.Sqrt(20);
+        var _5 = Math<int>.Sqrt(25);
+        var _10 = Math<int>.Sqrt(100);
+    }
+}
+
 
 static T Sum<T>(IEnumerable<T> values) where T : INumber<T>
 {
@@ -72,6 +93,8 @@ static void PowTest()
         }
     }
 }
+
+
 
 /// <summary>
 /// マチンの公式
