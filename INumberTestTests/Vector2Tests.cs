@@ -35,8 +35,8 @@ namespace INumberTest.Tests
         {
             var vector = new Vector2<double>(1, 1);
             vector.Normalize();
-            Assert.AreEqual(0.57735026918962573, vector.X, Delta);
-            Assert.AreEqual(0.57735026918962573, vector.Y, Delta);
+            Assert.AreEqual(0.70710678118654752, vector.X, Delta);
+            Assert.AreEqual(0.70710678118654752, vector.Y, Delta);
         }
 
         [TestMethod()]
@@ -65,13 +65,13 @@ namespace INumberTest.Tests
             {
                 var vector1 = new Vector2<double>(1, 1);
                 var vector2 = new Vector2<double>(1, 1);
-                Assert.AreEqual(3.0, Vector2<double>.Dot(vector1, vector2));
+                Assert.AreEqual(2.0, Vector2<double>.Dot(vector1, vector2));
             }
 
             {
                 var vector1 = new Vector2<double>(1, 1);
                 var vector2 = new Vector2<double>(-1, -1);
-                Assert.AreEqual(-3.0, Vector2<double>.Dot(vector1, vector2));
+                Assert.AreEqual(-2.0, Vector2<double>.Dot(vector1, vector2));
             }
         }
 
