@@ -76,6 +76,14 @@ namespace INumberTest
         /// <summary>
         /// コピーコンストラクタ
         /// </summary>
+        public Vector(IEnumerable<T> source)
+        {
+            Values = new List<T>(source.Count());
+            Values.AddRange(source);
+        }
+        /// <summary>
+        /// コピーコンストラクタ
+        /// </summary>
         public Vector(Vector<T> source)
         {
             Values = new List<T>(source.Values);

@@ -13,6 +13,15 @@ namespace INumberTest.Tests
     public class VectorTests
     {
         const double Delta = 0.000000000000001;
+
+        [TestMethod()]
+        public void ConstructorTest()
+        {
+            var vector1 = new Vector<double>(new double[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            var vector2 = new Vector<double>(vector1);
+            Assert.AreEqual(vector1, vector2);
+        }
+
         [TestMethod()]
         public void MagnitudeTest()
         {
