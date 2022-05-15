@@ -88,6 +88,35 @@ namespace INumberTest.Tests
                 Assert.AreEqual(vector3, Vector<double>.Cross3(vector1, vector2));
             }
         }
+
+        [TestMethod()]
+        public void OperationsTest()
+        {
+            {
+                var vector0 = new Vector<double>(0, 0, 0);
+                var vector1 = new Vector<double>(1, 1, 1);
+                var vector2 = new Vector<double>(2, 2, 2);
+                var vector3 = new Vector<double>(3, 3, 3);
+                var vector4 = new Vector<double>(4, 4, 4);
+                var vectorN1 = new Vector<double>(-1, -1, -1);
+                Assert.AreEqual(vector1, (vector1 + vector0));
+                Assert.AreEqual(vector3, (vector1 + vector2));
+                Assert.AreEqual(vector3, (vector2 + vector1));
+                Assert.AreEqual(vector4, (vector2 + vector2));
+                Assert.AreEqual(vector0, (vector1 - vector1));
+                Assert.AreEqual(vector2, (vector3 - vector1));
+                Assert.AreEqual(vector1, (vector3 - vector2));
+                Assert.AreEqual(vectorN1, (vector1 - vector2));
+                Assert.AreEqual(vector1, (vector1 * 1));
+                Assert.AreEqual(vector2, (vector1 * 2));
+                Assert.AreEqual(vector3, (vector1 * 3));
+                Assert.AreEqual(vector4, (vector4 / 1));
+                Assert.AreEqual(vector2, (vector4 / 2));
+                Assert.AreEqual(vector0, (vector1 % 1));
+                Assert.AreEqual(vector1, (vector3 % 2));
+                Assert.AreEqual(vector0, (vector4 % 2));
+            }
+        }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります
 }

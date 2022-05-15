@@ -84,6 +84,15 @@ namespace INumberTest
         /// <summary>
         /// コピーコンストラクタ
         /// </summary>
+        public Vector(Vector2<T> source)
+        {
+            Values = new List<T>(Vector3<T>.Rank);
+            Values.Add(source.X);
+            Values.Add(source.Y);
+        }
+        /// <summary>
+        /// コピーコンストラクタ
+        /// </summary>
         public Vector(Vector3<T> source)
         {
             Values = new List<T>(Vector3<T>.Rank);
@@ -135,24 +144,28 @@ namespace INumberTest
 
         public static Vector<T> operator -(Vector<T> left, Vector<T> right)
         {
-            if (left.Rank > right.Rank)
+            var min = Math.Min(left.Rank, right.Rank);
+            var max = Math.Max(left.Rank, right.Rank);
+            var temp = new Vector<T>();
+            for (int i = 0; i < min; i++)
             {
-                var temp = new Vector<T>(left);
-                for (int i = 0; i < right.Rank; i++)
+                temp.Values.Add(left[i] - right[i]);
+            }
+            if (left.Rank == max)
+            {
+                for (int i = min; i < max; i++)
                 {
-                    temp[i] -= right[i];
+                    temp.Values.Add(left[i]);
                 }
-                return temp;
             }
             else
             {
-                var temp = new Vector<T>(right);
-                for (int i = 0; i < left.Rank; i++)
+                for (int i = min; i < max; i++)
                 {
-                    temp[i] -= left[i];
+                    temp.Values.Add(T.Zero - right[i]);
                 }
-                return temp;
             }
+            return temp;
         }
 
         public static Vector<T> operator *(Vector<T> left, T right)
@@ -261,6 +274,13 @@ namespace INumberTest
             return Math<T>.Sum(temp.Values);
         }
         /// <summary>
+        /// 2次元としての外積を計算します。
+        /// </summary>
+        public static T Cross2(Vector<T> left, Vector<T> right)
+        {
+            return Vector2<T>.Cross((Vector2<T>)left, (Vector2<T>)right);
+        }
+        /// <summary>
         /// 3次元としての外積を計算します。
         /// </summary>
         public static Vector3<T> Cross3(Vector<T> left, Vector<T> right)
@@ -269,9 +289,20 @@ namespace INumberTest
         }
 
         #region 型変換
+        public static implicit operator Vector<T>(Vector2<T> source)
+        {
+            return new Vector<T>(source);
+        }
         public static implicit operator Vector<T>(Vector3<T> source)
         {
             return new Vector<T>(source);
+        }
+        public static explicit operator Vector2<T>(Vector<T> source)
+        {
+            var result = new Vector2<T>();
+            result.X = source.Rank > 0 ? source[0] : T.Zero;
+            result.Y = source.Rank > 1 ? source[1] : T.Zero;
+            return result;
         }
         public static explicit operator Vector3<T>(Vector<T> source)
         {
