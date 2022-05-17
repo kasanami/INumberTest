@@ -9,6 +9,21 @@ namespace INumberTest
     public class Math<T> where T : INumber<T>
     {
         /// <summary>
+        /// 奇数ならばtrueを返す。
+        /// </summary>
+        public static bool IsOdd(T value)
+        {
+            return value % T.Create(2) != T.Zero;
+        }
+        /// <summary>
+        /// 偶数ならばtrueを返す。
+        /// </summary>
+        public static bool IsEven(T value)
+        {
+            return value % T.Create(2) == T.Zero;
+        }
+
+        /// <summary>
         /// 合計を計算する
         /// </summary>
         /// <param name="values">合計する値</param>
