@@ -8,6 +8,7 @@ namespace INumberTest
 {
     public class Math<T> where T : INumber<T>
     {
+        #region　Is*
         /// <summary>
         /// 奇数ならばtrueを返す。
         /// </summary>
@@ -22,6 +23,28 @@ namespace INumberTest
         {
             return value % T.Create(2) == T.Zero;
         }
+        /// <summary>
+        /// 負数ならばtrueを返す。
+        /// </summary>
+        public bool IsNegative(T value)
+        {
+            return value < T.Zero;
+        }
+        /// <summary>
+        /// 正数ならばtrueを返す。
+        /// </summary>
+        public bool IsPositive(T value)
+        {
+            return value > T.Zero;
+        }
+        /// <summary>
+        /// ゼロならばtrueを返す。
+        /// </summary>
+        public bool IsZero(T value)
+        {
+            return value == T.Zero;
+        }
+        #endregion　Is*
 
         /// <summary>
         /// 合計を計算する
