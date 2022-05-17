@@ -22,10 +22,11 @@ VectorTest();
 static void MathTest()
 {
     // Sqrt
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 1000; i++)
     {
-        var s = Math<int>.Sqrt(i);
-        Console.WriteLine($"{s}^2={i}");
+        var sI = Math<int>.Sqrt(i);
+        var sD = Math<double>.Sqrt(i);
+        Console.WriteLine($"Sqrt({i})={sI} {sD}");
     }
     {
         var _1 = Math<int>.Sqrt(1);
