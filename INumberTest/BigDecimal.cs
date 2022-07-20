@@ -10,7 +10,7 @@ using static System.Diagnostics.Debug;
 
 namespace INumberTest
 {
-    internal struct BigDecimal : INumber<BigDecimal>
+    public struct BigDecimal : INumber<BigDecimal>
     {
         #region 定数
 
@@ -986,22 +986,22 @@ namespace INumberTest
             return y;
         }
 
-        public static BigDecimal Parse(string s, NumberStyles style, IFormatProvider? provider)
+        public static BigDecimal Parse(string s, NumberStyles style, IFormatProvider provider)
         {
             throw new NotImplementedException();
         }
 
-        public static BigDecimal Parse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider)
+        public static BigDecimal Parse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider provider)
         {
             throw new NotImplementedException();
         }
 
-        public static BigDecimal Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+        public static BigDecimal Parse(ReadOnlySpan<char> s, IFormatProvider provider)
         {
             throw new NotImplementedException();
         }
 
-        public static BigDecimal Parse(string s, IFormatProvider? provider)
+        public static BigDecimal Parse(string s, IFormatProvider provider)
         {
             throw new NotImplementedException();
         }
@@ -1016,27 +1016,27 @@ namespace INumberTest
             throw new NotImplementedException();
         }
 
-        public static bool TryParse([NotNullWhen(true)] string? s, NumberStyles style, IFormatProvider? provider, out BigDecimal result)
+        public static bool TryParse([NotNullWhen(true)] string s, NumberStyles style, IFormatProvider provider, out BigDecimal result)
         {
             throw new NotImplementedException();
         }
 
-        public static bool TryParse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider? provider, out BigDecimal result)
+        public static bool TryParse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider provider, out BigDecimal result)
         {
             throw new NotImplementedException();
         }
 
-        public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out BigDecimal result)
+        public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider provider, out BigDecimal result)
         {
             throw new NotImplementedException();
         }
 
-        public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out BigDecimal result)
+        public static bool TryParse([NotNullWhen(true)] string s, IFormatProvider provider, out BigDecimal result)
         {
             throw new NotImplementedException();
         }
 
-        public int CompareTo(object? obj)
+        public int CompareTo(object obj)
         {
             throw new NotImplementedException();
         }
@@ -1051,89 +1051,125 @@ namespace INumberTest
             throw new NotImplementedException();
         }
 
-        public string ToString(string? format, IFormatProvider? formatProvider)
+        public string ToString(string format, IFormatProvider formatProvider)
         {
             throw new NotImplementedException();
         }
 
-        public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+        public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider provider)
         {
             throw new NotImplementedException();
         }
 
         public static BigDecimal operator +(BigDecimal value)
         {
-            throw new NotImplementedException();
+            return value;
         }
 
         public static BigDecimal operator +(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            UniformExponent(ref left, ref right);
+            return new BigDecimal(
+                left.Mantissa + right.Mantissa,
+                left.Exponent,
+                System.Math.Min(left.MinExponent, right.MinExponent));
         }
 
         public static BigDecimal operator -(BigDecimal value)
         {
-            throw new NotImplementedException();
+            return new BigDecimal(-value.Mantissa, value.Exponent, value.MinExponent);
         }
 
         public static BigDecimal operator -(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            UniformExponent(ref left, ref right);
+            return new BigDecimal(
+                left.Mantissa - right.Mantissa,
+                left.Exponent,
+                System.Math.Min(left.MinExponent, right.MinExponent));
         }
 
         public static BigDecimal operator ++(BigDecimal value)
         {
-            throw new NotImplementedException();
+            return value + 1;
         }
 
         public static BigDecimal operator --(BigDecimal value)
         {
-            throw new NotImplementedException();
+            return value - 1;
         }
 
         public static BigDecimal operator *(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            var temp = new BigDecimal(
+                left.Mantissa * right.Mantissa,
+                left.Exponent + right.Exponent);
+            temp.MinExponent = System.Math.Min(left.MinExponent, right.MinExponent);
+            temp.RoundByMinExponent();
+            return temp;
         }
 
         public static BigDecimal operator /(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            var temp = new BigDecimal(left);
+            // 指数が小さい方に合わせる
+            temp.MinExponent = System.Math.Min(left.MinExponent, right.MinExponent);
+            // 割られる数の Exponent を最小にする。
+            // さらに、丸め処理のため桁増やす
+            var addExponent = System.Math.Min(right.Exponent + AddExponent, 0);
+            temp._MinimizeExponent(temp.MinExponent + addExponent);
+            // 除算
+            temp.Mantissa /= right.Mantissa;
+            temp.Exponent -= right.Exponent;
+            // 丸め処理(桁増やした分はここで減る)
+            temp.RoundByMinExponent();
+            Assert(temp.Exponent >= temp.MinExponent);
+            // 最適化
+            temp.MinimizeMantissa();
+            return temp;
         }
 
         public static BigDecimal operator %(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            UniformExponent(ref left, ref right);
+            return new BigDecimal(
+                left.Mantissa % right.Mantissa,
+                left.Exponent,
+                System.Math.Min(left.MinExponent, right.MinExponent));
         }
 
         public static bool operator ==(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            return left.Equals(right);
         }
 
         public static bool operator !=(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            return left.Equals(right) != true;
         }
 
         public static bool operator <(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            _ConvertSameExponent(ref left, ref right);
+            return left.Mantissa < right.Mantissa;
         }
 
         public static bool operator >(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            _ConvertSameExponent(ref left, ref right);
+            return left.Mantissa > right.Mantissa;
         }
 
         public static bool operator <=(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            _ConvertSameExponent(ref left, ref right);
+            return left.Mantissa <= right.Mantissa;
         }
 
         public static bool operator >=(BigDecimal left, BigDecimal right)
         {
-            throw new NotImplementedException();
+            _ConvertSameExponent(ref left, ref right);
+            return left.Mantissa >= right.Mantissa;
         }
 
 #pragma warning disable CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
@@ -1153,17 +1189,18 @@ namespace INumberTest
 
         public int CompareTo(BigDecimal other)
         {
-            throw new NotImplementedException();
+            return Compare(this, other);
         }
 
         public bool Equals(BigDecimal other)
         {
-            throw new NotImplementedException();
+            return Equals(this, other);
         }
 
         public override int GetHashCode()
         {
-            throw new NotImplementedException();
+            MinimizeMantissa();
+            return Mantissa.GetHashCode() ^ Exponent.GetHashCode();
         }
 
         #endregion INumber<BigDecimal>

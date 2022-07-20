@@ -1,6 +1,7 @@
 ﻿
 using INumberTest;
 
+#pragma warning disable CS8321 // ローカル関数は宣言されていますが、一度も使用されていません
 
 static void Test<T>() where T : IFloatingPoint<T>
 {
@@ -164,3 +165,5 @@ static void _VectorTest<T>() where T:IFloatingPoint<T>
     var normalized = vector.Normalized;
     Console.WriteLine($"normalized={normalized}");
 }
+
+#pragma warning restore CS8321 // ローカル関数は宣言されていますが、一度も使用されていません
