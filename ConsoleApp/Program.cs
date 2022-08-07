@@ -13,7 +13,7 @@ namespace CibsoleApp
 
             Metre<double> oneMetre = 1;
 
-            var m = Metre* 123;
+            var m = Metre * 123;
 
             Kilogram<double> oneKilogram = 1;
             Console.WriteLine($"{nameof(oneKilogram)}={oneKilogram}");
@@ -25,6 +25,8 @@ namespace CibsoleApp
             // 
             Newton<double> newton = joule / oneMetre;
             Console.WriteLine($"newton={newton}");
+
+            Int128 int128 = 123;
         }
     }
 }
