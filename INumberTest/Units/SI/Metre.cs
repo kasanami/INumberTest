@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace INumberTest.Units.SI
 {
@@ -52,14 +48,14 @@ namespace INumberTest.Units.SI
         /// </summary>
         public static Metre<T> operator *(int value, Metre<T> quantity)
         {
-            return T.Create(value) * quantity;
+            return T.CreateChecked(value) * quantity;
         }
         /// <summary>
         /// 乗算
         /// </summary>
         public static Metre<T> operator *(Metre<T> quantity, int value)
         {
-            return quantity.Value * T.Create(value);
+            return quantity.Value * T.CreateChecked(value);
         }
         #endregion 演算子
 

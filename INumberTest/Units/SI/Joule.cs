@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,11 +25,6 @@ namespace INumberTest.Units.SI
         /// 記号
         /// </summary>
         public static string Symbol => "J";
-        /// <summary>
-        /// 量の種類
-        /// </summary>
-        public static QuantityType Type { get; } = QuantityType.Unknown;
-
         public override string _Symbol => Symbol; 
         #endregion プロパティ
 

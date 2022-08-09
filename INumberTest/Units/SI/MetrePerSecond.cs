@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace INumberTest.Units.SI
 {
@@ -15,7 +11,7 @@ namespace INumberTest.Units.SI
         /// <summary>
         /// 光速
         /// </summary>
-        public static readonly MetrePerSecond<T> SpeedOfLight = new MetrePerSecond<T>(T.Create(299792458));
+        public static readonly MetrePerSecond<T> SpeedOfLight = new MetrePerSecond<T>(T.CreateChecked(299792458));
         #endregion 定数
 
         #region プロパティ

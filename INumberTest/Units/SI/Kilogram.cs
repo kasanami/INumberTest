@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,9 +25,6 @@ namespace INumberTest.Units.SI
         /// 記号
         /// </summary>
         public static string Symbol => "kg";
-
-        public override QuantityType Type { get; } = QuantityType.Mass;
-
         public override string _Symbol => Symbol;
         #endregion プロパティ
 

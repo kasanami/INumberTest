@@ -926,6 +926,8 @@ namespace INumberTest
 
         public static BigDecimal MultiplicativeIdentity => One;
 
+        public int Radix =10;
+
         public static BigDecimal Abs(BigDecimal value)
         {
             if (value.IsNegative())
@@ -1172,6 +1174,81 @@ namespace INumberTest
             return left.Mantissa >= right.Mantissa;
         }
 
+        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator >(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator >=(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator <(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator <=(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IModulusOperators<BigDecimal, BigDecimal, BigDecimal>.operator %(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IAdditionOperators<BigDecimal, BigDecimal, BigDecimal>.operator +(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IDecrementOperators<BigDecimal>.operator --(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IDivisionOperators<BigDecimal, BigDecimal, BigDecimal>.operator /(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool IEqualityOperators<BigDecimal, BigDecimal>.operator ==(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool IEqualityOperators<BigDecimal, BigDecimal>.operator !=(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IIncrementOperators<BigDecimal>.operator ++(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IMultiplyOperators<BigDecimal, BigDecimal, BigDecimal>.operator *(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal ISubtractionOperators<BigDecimal, BigDecimal, BigDecimal>.operator -(BigDecimal left, BigDecimal right)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IUnaryNegationOperators<BigDecimal, BigDecimal>.operator -(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IUnaryPlusOperators<BigDecimal, BigDecimal>.operator +(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
 #pragma warning disable CS8765 // パラメーターの型の NULL 値の許容が、オーバーライドされたメンバーと一致しません。おそらく、NULL 値の許容の属性が原因です。
         public override bool Equals(object obj)
         {
@@ -1356,6 +1433,341 @@ namespace INumberTest
                 var exponentDiff = valueR.Exponent - valueL.Exponent;
                 valueR.Mantissa *= Pow10(exponentDiff);
             }
+        }
+
+        public static bool IsCanonical(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsComplexNumber(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsEvenInteger(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsFinite(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsImaginaryNumber(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsInfinity(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsInteger(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsNaN(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsNegative(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsNegativeInfinity(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsNormal(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsOddInteger(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsPositive(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsPositiveInfinity(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsRealNumber(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsSubnormal(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsZero(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static BigDecimal MaxMagnitude(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static BigDecimal MaxMagnitudeNumber(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static BigDecimal MinMagnitude(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static BigDecimal MinMagnitudeNumber(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumber<BigDecimal>.Clamp(BigDecimal value, BigDecimal min, BigDecimal max)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumber<BigDecimal>.Max(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumber<BigDecimal>.Min(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IComparable<BigDecimal>.CompareTo(BigDecimal other)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.Abs(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.CreateSaturating<TOther>(TOther value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.CreateTruncating<TOther>(TOther value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsCanonical(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsComplexNumber(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsEvenInteger(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsFinite(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsImaginaryNumber(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsInfinity(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsInteger(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsNaN(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsNegative(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsNegativeInfinity(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsNormal(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsOddInteger(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsPositive(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsPositiveInfinity(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsRealNumber(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsSubnormal(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.IsZero(BigDecimal value)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.MaxMagnitude(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.MaxMagnitudeNumber(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.MinMagnitude(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.MinMagnitudeNumber(BigDecimal x, BigDecimal y)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.Parse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal INumberBase<BigDecimal>.Parse(string s, NumberStyles style, IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryConvertFromChecked<TOther>(TOther value, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryConvertFromSaturating<TOther>(TOther value, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryConvertFromTruncating<TOther>(TOther value, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryConvertToChecked<TOther>(BigDecimal value, out TOther result) where TOther : default
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryConvertToSaturating<TOther>(BigDecimal value, out TOther result) where TOther : default
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryConvertToTruncating<TOther>(BigDecimal value, out TOther result) where TOther : default
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryParse(ReadOnlySpan<char> s, NumberStyles style, IFormatProvider provider, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool INumberBase<BigDecimal>.TryParse(string s, NumberStyles style, IFormatProvider provider, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool ISpanFormattable.TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        string IFormattable.ToString(string format, IFormatProvider formatProvider)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal ISpanParsable<BigDecimal>.Parse(ReadOnlySpan<char> s, IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool ISpanParsable<BigDecimal>.TryParse(ReadOnlySpan<char> s, IFormatProvider provider, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        static BigDecimal IParsable<BigDecimal>.Parse(string s, IFormatProvider provider)
+        {
+            throw new NotImplementedException();
+        }
+
+        static bool IParsable<BigDecimal>.TryParse(string s, IFormatProvider provider, out BigDecimal result)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IEquatable<BigDecimal>.Equals(BigDecimal other)
+        {
+            throw new NotImplementedException();
         }
         #endregion 補助
     }

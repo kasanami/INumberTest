@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,14 +15,14 @@ namespace INumberTest
         /// </summary>
         public static bool IsOdd(T value)
         {
-            return value % T.Create(2) != T.Zero;
+            return value % T.CreateChecked(2) != T.Zero;
         }
         /// <summary>
         /// 偶数ならばtrueを返す。
         /// </summary>
         public static bool IsEven(T value)
         {
-            return value % T.Create(2) == T.Zero;
+            return value % T.CreateChecked(2) == T.Zero;
         }
         /// <summary>
         /// 負数ならばtrueを返す。
@@ -85,7 +86,7 @@ namespace INumberTest
             var temp = value;
             var prev = value;
             var prev2 = value;
-            var _2 = T.Create(2);
+            var _2 = T.CreateChecked(2);
             for (int i = 0; i < count; i++)
             {
                 temp = (temp * temp + value) / (_2 * temp);

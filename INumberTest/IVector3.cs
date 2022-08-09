@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace INumberTest
 {
@@ -10,7 +6,7 @@ namespace INumberTest
     /// 
     /// </summary>
     /// <typeparam name="T">要素の型</typeparam>
-    public interface IVector3<T>:
+    public interface IVector3<T> :
         IAdditiveIdentity<Vector3<T>, Vector3<T>>,
         IMultiplicativeIdentity<Vector3<T>, Vector3<T>>,
         IUnaryPlusOperators<Vector3<T>, Vector3<T>>,
