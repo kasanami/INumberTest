@@ -20,5 +20,23 @@ namespace INumberTest
         IEqualityOperators<Vector3<T>, Vector3<T>>
         where T : INumber<T>
     {
+
+        #region プロパティ
+        public T X { get; set; }
+        public T Y { get; set; }
+        public T Z { get; set; }
+        /// <summary>
+        /// 大きさ
+        /// </summary>
+        public T Magnitude { get; }
+        /// <summary>
+        /// 大きさを2乗した値
+        /// </summary>
+        public T SquaredMagnitude { get; }
+        /// <summary>
+        /// 正規化した値を返す。
+        /// </summary>
+        public Vector3<T> Normalized { get; }
+        #endregion プロパティ
     }
 }

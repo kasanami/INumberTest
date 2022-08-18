@@ -5,19 +5,7 @@ namespace INumberTest
     /// <summary>
     /// 3次元ベクトル
     /// </summary>
-    public struct Vector3<T> :
-        IAdditiveIdentity<Vector3<T>, Vector3<T>>,
-        IMultiplicativeIdentity<Vector3<T>, Vector3<T>>,
-        IUnaryPlusOperators<Vector3<T>, Vector3<T>>,
-        IUnaryNegationOperators<Vector3<T>, Vector3<T>>,
-        IAdditionOperators<Vector3<T>, Vector3<T>, Vector3<T>>,
-        ISubtractionOperators<Vector3<T>, Vector3<T>, Vector3<T>>,
-        IMultiplyOperators<Vector3<T>, T, Vector3<T>>,
-        IDivisionOperators<Vector3<T>, T, Vector3<T>>,
-        IModulusOperators<Vector3<T>, T, Vector3<T>>,
-        IEquatable<Vector3<T>>,
-        IEqualityOperators<Vector3<T>, Vector3<T>>
-        where T : INumber<T>
+    public struct Vector3<T> : IVector3<T> where T : INumber<T>
     {
         /// <summary>
         /// 次元数
