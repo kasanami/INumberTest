@@ -17,7 +17,7 @@ namespace INumberTest
         /// <summary>
         /// 十進数の底（てい）
         /// </summary>
-        public const int Base = 10;
+        public static int Radix { get; } = 10;
 
         /// <summary>
         /// 数値 0 を表します。
@@ -685,7 +685,7 @@ namespace INumberTest
         /// <returns>10 を exponent で累乗した結果。</returns>
         public static BigInteger Pow10(int exponent)
         {
-            return BigInteger.Pow(Base, exponent);
+            return BigInteger.Pow(Radix, exponent);
         }
         /// <summary>
         /// 10 進値を最も近い整数に丸めます。
@@ -925,8 +925,6 @@ namespace INumberTest
         public static BigDecimal AdditiveIdentity => Zero;
 
         public static BigDecimal MultiplicativeIdentity => One;
-
-        public int Radix =10;
 
         public static BigDecimal Abs(BigDecimal value)
         {
@@ -1364,7 +1362,7 @@ namespace INumberTest
             {
                 return value;
             }
-            var divisor = BigInteger.Pow(Base, digits);
+            var divisor = BigInteger.Pow(Radix, digits);
             var half = divisor / 2;
             var remainder = value % divisor;
             // 中間を超えている時
