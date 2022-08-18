@@ -19,7 +19,7 @@ namespace INumberTest.Units
         /// </summary>
         public T Value { get; set; } = T.Zero;
         /// <summary>
-        /// 内部参照用
+        /// 記号（override用）
         /// </summary>
         public virtual string _Symbol { get; } = "";
         #endregion プロパティ

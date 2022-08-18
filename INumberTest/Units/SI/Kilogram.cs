@@ -25,7 +25,10 @@ namespace INumberTest.Units.SI
         /// 記号
         /// </summary>
         public static string Symbol => "kg";
-        public override string _Symbol => Symbol;
+        /// <summary>
+        /// 記号（override用）
+        /// </summary>
+        public override string _Symbol { get; } = Symbol;
         #endregion プロパティ
 
         #region コンストラクタ
