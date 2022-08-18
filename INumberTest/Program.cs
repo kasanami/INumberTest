@@ -1,9 +1,9 @@
-﻿
-using INumberTest;
+﻿using INumberTest;
+using System.Numerics;
 
 #pragma warning disable CS8321 // ローカル関数は宣言されていますが、一度も使用されていません
 
-static void Test<T>() where T : IFloatingPoint<T>
+static void Test<T>() where T : IFloatingPointIeee754<T>
 {
     Console.WriteLine("Test");
     Console.WriteLine($"{typeof(T).Name}.Tau={T.Tau}");
@@ -57,7 +57,7 @@ static void SumTest()
     Console.WriteLine(sum);
 }
 
-static T Pow<T>(T value, int exponent) where T : INumber<T>
+static T Pow<T>(T value, int exponent) where T : INumberBase<T>
 {
     if (exponent == 0)
     {
@@ -103,17 +103,17 @@ static void PowTest()
 /// </summary>
 /// <param name="count">計算回数。1未満を設定すると0を返す。</param>
 /// <returns>PI/4(円周率の4分の1)</returns>
-static T MachinsFormula<T>(int count) where T : INumber<T>
+static T MachinsFormula<T>(int count) where T : INumberBase<T>
 {
-    var _4 = T.Create(4);
-    var _5 = T.Create(5);
-    var _239 = T.Create(239);
+    var _4 = T.CreateChecked(4);
+    var _5 = T.CreateChecked(5);
+    var _239 = T.CreateChecked(239);
 
     T sum = T.Zero;
     for (int k = 1; k <= count; k++)
     {
         int odd = (2 * k - 1);// 奇数(int型)
-        var _odd = T.Create(odd);// 奇数(T型)
+        var _odd = T.CreateChecked(odd);// 奇数(T型)
         sum +=
             _4 *
             (Pow(-T.One, k + 1) / _odd) *
