@@ -16,6 +16,10 @@ namespace INumberTest.Units
         /// </summary>
         Unknown = -1,
         /// <summary>
+        /// その他
+        /// </summary>
+        Other,
+        /// <summary>
         /// 加速度
         /// </summary
         Acceleration,
