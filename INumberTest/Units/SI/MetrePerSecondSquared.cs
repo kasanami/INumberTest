@@ -9,8 +9,15 @@ namespace INumberTest.Units.SI
     /// <para>量  :加速度</para>
     /// <para>定義:1秒間に 1 m/s の加速度</para>
     /// </summary>
-    public class MetrePerSecondSquared<T> : Quantity<T> where T : INumber<T>
+    public class MetrePerSecondSquared<T> : Quantity<T>, IAcceleration<T> where T : INumber<T>
     {
+        #region 定数
+        /// <summary>
+        /// 重力加速度
+        /// </summary>
+        public static readonly MetrePerSecondSquared<T> GravitationalAcceleration = new(T.CreateChecked(9.80665m));
+        #endregion 定数
+
         #region プロパティ
         /// <summary>
         /// 名前

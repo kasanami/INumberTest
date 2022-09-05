@@ -14,7 +14,7 @@ namespace INumberTest.Units.SI
     /// <para>量  :エネルギー・仕事・熱量・電力量</para>
     /// <para>由来:1ニュートンの力がその力の方向に物体を1メートル動かすときの仕事</para>
     /// </summary>
-    public class Joule<T> : Quantity<T> where T : INumber<T>
+    public class Joule<T> : Quantity<T>, IEnergy<T> where T : INumber<T>
     {
         #region プロパティ
         /// <summary>

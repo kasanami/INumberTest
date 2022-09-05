@@ -4,8 +4,12 @@ namespace INumberTest.Units.SI
 {
     /// <summary>
     /// メートル毎秒
+    /// <para>記号:m/s</para>
+    /// <para>系  :国際単位系（組立単位）</para>
+    /// <para>量  :速さ</para>
+    /// <para>定義:1秒間に1mの速さ</para>
     /// </summary>
-    public class MetrePerSecond<T> : Quantity<T> where T : INumber<T>
+    public class MetrePerSecond<T> : Quantity<T>, IVelocity<T> where T : INumber<T>
     {
         #region 定数
         /// <summary>

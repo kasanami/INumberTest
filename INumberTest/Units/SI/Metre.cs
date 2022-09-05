@@ -9,7 +9,7 @@ namespace INumberTest.Units.SI
     /// <para>種類:基本単位</para>
     /// <para>量  :長さ</para>
     /// </summary>
-    public class Metre<T> : Quantity<T> where T : INumber<T>
+    public class Metre<T> : Quantity<T>, ILength<T> where T : INumber<T>
     {
         #region プロパティ
         /// <summary>

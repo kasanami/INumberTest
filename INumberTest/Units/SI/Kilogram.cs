@@ -14,7 +14,7 @@ namespace INumberTest.Units.SI
     /// <para>種類:基本単位</para>
     /// <para>量  :質量</para>
     /// </summary>
-    public class Kilogram<T> : Quantity<T> where T : INumber<T>
+    public class Kilogram<T> : Quantity<T>, IMass<T> where T : INumber<T>
     {
         #region プロパティ
         /// <summary>

@@ -9,7 +9,7 @@ namespace INumberTest.Units.SI
     /// <para>種類:基本単位</para>
     /// <para>量  :時間</para>
     /// </summary>
-    public class Second<T> : Quantity<T> where T : INumber<T>
+    public class Second<T> : Quantity<T>, ITime<T> where T : INumber<T>
     {
         #region プロパティ
         /// <summary>

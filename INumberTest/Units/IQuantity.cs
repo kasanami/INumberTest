@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 
 namespace INumberTest.Units
 {
-    public interface IQuantity<T>
+    /// <summary>
+    /// 何らかの量
+    /// </summary>
+    /// <typeparam name="T">数値型</typeparam>
+    public interface IQuantity<T>where T : INumber<T>
     {
         #region プロパティ
         /// <summary>

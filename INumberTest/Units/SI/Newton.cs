@@ -10,7 +10,7 @@ namespace INumberTest.Units.SI
     /// <para>量  :力</para>
     /// <para>定義:1kgの質量を持つ物体に1m/s^2の加速度を生じさせる力</para>
     /// </summary>
-    public class Newton<T> : Quantity<T> where T : INumber<T>
+    public class Newton<T> : Quantity<T>, IForce<T> where T : INumber<T>
     {
         #region プロパティ
         /// <summary>
