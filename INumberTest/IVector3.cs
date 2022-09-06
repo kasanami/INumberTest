@@ -17,7 +17,7 @@ namespace INumberTest
         IDivisionOperators<Vector3<T>, T, Vector3<T>>,
         IModulusOperators<Vector3<T>, T, Vector3<T>>,
         IEquatable<Vector3<T>>,
-        IEqualityOperators<Vector3<T>, Vector3<T>>
+        IEqualityOperators<Vector3<T>, Vector3<T>, bool>
         where T : INumber<T>
     {
 

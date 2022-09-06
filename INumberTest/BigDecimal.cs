@@ -1172,26 +1172,6 @@ namespace INumberTest
             return left.Mantissa >= right.Mantissa;
         }
 
-        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator >(BigDecimal left, BigDecimal right)
-        {
-            throw new NotImplementedException();
-        }
-
-        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator >=(BigDecimal left, BigDecimal right)
-        {
-            throw new NotImplementedException();
-        }
-
-        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator <(BigDecimal left, BigDecimal right)
-        {
-            throw new NotImplementedException();
-        }
-
-        static bool IComparisonOperators<BigDecimal, BigDecimal>.operator <=(BigDecimal left, BigDecimal right)
-        {
-            throw new NotImplementedException();
-        }
-
         static BigDecimal IModulusOperators<BigDecimal, BigDecimal, BigDecimal>.operator %(BigDecimal left, BigDecimal right)
         {
             throw new NotImplementedException();
@@ -1208,16 +1188,6 @@ namespace INumberTest
         }
 
         static BigDecimal IDivisionOperators<BigDecimal, BigDecimal, BigDecimal>.operator /(BigDecimal left, BigDecimal right)
-        {
-            throw new NotImplementedException();
-        }
-
-        static bool IEqualityOperators<BigDecimal, BigDecimal>.operator ==(BigDecimal left, BigDecimal right)
-        {
-            throw new NotImplementedException();
-        }
-
-        static bool IEqualityOperators<BigDecimal, BigDecimal>.operator !=(BigDecimal left, BigDecimal right)
         {
             throw new NotImplementedException();
         }

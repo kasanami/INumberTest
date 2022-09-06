@@ -17,7 +17,7 @@ namespace INumberTest
         IDivisionOperators<Vector<T>, T, Vector<T>>,
         IModulusOperators<Vector<T>, T, Vector<T>>,
         IEquatable<Vector<T>>,
-        IEqualityOperators<Vector<T>, Vector<T>>
+        IEqualityOperators<Vector<T>, Vector<T>, bool>
         where T : INumber<T>
     {
         #region プロパティ
