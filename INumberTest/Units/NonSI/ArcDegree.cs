@@ -10,10 +10,13 @@ namespace INumberTest.Units.NonSI
     /// <para>量  :平面角</para>
     /// <para>由来:円周を360等分した弧の中心に対する角度</para>
     /// </summary>
-    public class ArcDegree<T> : Quantity<T>, IPlaneAngle<T> where T : INumber<T>, IFloatingPointIeee754<T>
+    public class ArcDegree<T> : Quantity<T>, IPlaneAngle<T> where T : INumber<T>, IFloatingPointConstants<T>
     {
         #region 定数
-        private static readonly T _180 = T.CreateChecked(180);
+        private static readonly T T180 = T.CreateChecked(180);
+        private static readonly T T360 = T.CreateChecked(360);
+        public static readonly ArcDegree<T> ArcDegree180 = new ArcDegree<T>(T180);
+        public static readonly ArcDegree<T> ArcDegree360 = new ArcDegree<T>(T360);
         #endregion 定数
 
         #region プロパティ
@@ -61,9 +64,14 @@ namespace INumberTest.Units.NonSI
         /// <summary>
         /// Radianへの暗黙的な変換を定義します。
         /// </summary>
-        public static implicit operator SI.Radian<T>(ArcDegree<T> quantity)
+        public static implicit operator Radian<T>(ArcDegree<T> quantity)
         {
-            var radian = T.Pi * quantity.Value / _180;
+            return quantity.ToRadian();
+        }
+
+        public Radian<T> ToRadian()
+        {
+            var radian = T.Pi * Value / T180;
             return new(radian);
         }
         #endregion 型変換

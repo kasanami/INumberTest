@@ -82,6 +82,11 @@ namespace INumberTest.Units.SI
         {
             return new MetrePerSecond<T>(value);
         }
+
+        public MetrePerSecond<T> ToMetrePerSecond()
+        {
+            return this;
+        }
         #endregion 型変換
     }
 }

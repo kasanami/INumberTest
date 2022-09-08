@@ -8,5 +8,6 @@ namespace INumberTest.Units
     /// <typeparam name="T">数値型</typeparam>
     public interface IAcceleration<T> : IQuantity<T> where T : INumber<T>
     {
+        public SI.MetrePerSecondSquared<T> ToMetrePerSecondSquared();
     }
 }

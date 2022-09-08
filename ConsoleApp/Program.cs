@@ -12,7 +12,7 @@ namespace CibsoleApp
     {
         static void Main()
         {
-            Console.WriteLine("hogehoge");
+            Console.WriteLine("Units test");
 
             Metre<double> oneMetre = 1;
 
@@ -48,13 +48,17 @@ namespace CibsoleApp
         /// <param name="velocity">初速度</param>
         /// <param name="planeAngle">射出角度</param>
         /// <returns>距離</returns>
-        static Metre<T> ParabolicMotionLength<T>(IVelocity<T> velocity, Radian<T> planeAngle) where T : INumber<T>, ITrigonometricFunctions<T>
+        static ILength<T> ParabolicMotionLength<T>(IVelocity<T> velocity, IPlaneAngle<T> planeAngle) where T : INumber<T>, ITrigonometricFunctions<T>
+        {
+            return ParabolicMotionLength(velocity.ToMetrePerSecond(), planeAngle.ToRadian());
+        }
+        static Metre<T> ParabolicMotionLength<T>(MetrePerSecond<T> velocity, Radian<T> radian) where T : INumber<T>, ITrigonometricFunctions<T>
         {
             var _2 = T.CreateChecked(2);
             var velocity2 = velocity.Value * velocity.Value;
-            T temp = velocity2 * T.Sin(planeAngle.Value * _2);
+            T temp = velocity2 * T.Sin(radian.Value * _2);
             temp /= MetrePerSecondSquared<T>.GravitationalAcceleration.Value;
-            return new(temp);
+            return new Metre<T>(temp);
         }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります

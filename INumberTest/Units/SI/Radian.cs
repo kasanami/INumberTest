@@ -35,5 +35,12 @@ namespace INumberTest.Units.SI
         /// </summary>
         public Radian(T value) : base(value) { }
         #endregion コンストラクタ
+
+        #region 型変換
+        public Radian<T> ToRadian()
+        {
+            return this;
+        }
+        #endregion 型変換
     }
 }

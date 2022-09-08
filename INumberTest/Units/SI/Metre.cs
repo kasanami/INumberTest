@@ -76,6 +76,11 @@ namespace INumberTest.Units.SI
         {
             return new Metre<T>(value);
         }
+
+        public Metre<T> ToMetre()
+        {
+            return this;
+        }
         #endregion 型変換
     }
 }
