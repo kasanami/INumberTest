@@ -14,20 +14,39 @@ namespace CibsoleApp
         {
             Console.WriteLine("Units test");
 
-            Metre<double> oneMetre = 1;
-
             var m = Metre<double>.One * 123;
 
-            Kilogram<double> oneKilogram = 1;
-            Console.WriteLine($"{nameof(oneKilogram)}={oneKilogram}");
+            {
+                Console.WriteLine("T=double");
+                Metre<double> oneMetre = 1;
+                // 1キログラム
+                Kilogram<double> oneKilogram = 1;
+                Console.WriteLine($"{nameof(oneKilogram)}={oneKilogram}");
 
-            // 相対性理論により可換
-            Joule<double> joule = (Joule<double>)oneKilogram;
-            Console.WriteLine($"joule={joule}");
+                // 相対性理論により質量はエネルギーに変換可能
+                Joule<double> joule = (Joule<double>)oneKilogram;
+                Console.WriteLine($"joule={joule}");
 
-            // 
-            Newton<double> newton = joule / oneMetre;
-            Console.WriteLine($"newton={newton}");
+                // エネルギー割る距離は力
+                Newton<double> newton = joule / oneMetre;
+                Console.WriteLine($"newton={newton}");
+            }
+
+            {
+                Console.WriteLine("T=decimal");
+                Metre<decimal> oneMetre = 1;
+                // 1キログラム
+                Kilogram<decimal> oneKilogram = 1;
+                Console.WriteLine($"{nameof(oneKilogram)}={oneKilogram}");
+
+                // 相対性理論により質量はエネルギーに変換可能
+                Joule<decimal> joule = (Joule<decimal>)oneKilogram;
+                Console.WriteLine($"joule={joule}");
+
+                // エネルギー割る距離は力
+                Newton<decimal> newton = joule / oneMetre;
+                Console.WriteLine($"newton={newton}");
+            }
 
             Int128 int128 = 123;
 
@@ -42,7 +61,7 @@ namespace CibsoleApp
             }
         }
         /// <summary>
-        /// 放物運動
+        /// 放物運動の距離を計算する。
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="velocity">初速度</param>
@@ -52,13 +71,20 @@ namespace CibsoleApp
         {
             return ParabolicMotionLength(velocity.ToMetrePerSecond(), planeAngle.ToRadian());
         }
-        static Metre<T> ParabolicMotionLength<T>(MetrePerSecond<T> velocity, Radian<T> radian) where T : INumber<T>, ITrigonometricFunctions<T>
+        /// <summary>
+        /// 放物運動の距離を計算する。
+        /// </summary>
+        /// <typeparam name="T">数値型</typeparam>
+        /// <param name="velocity">初速度</param>
+        /// <param name="radian">射出角度</param>
+        /// <returns>距離</returns>
+        static Metre<T> ParabolicMotionLength<T>(MetrePerSecond<T> velocity, Radian<T> radian)
+            where T : INumber<T>, ITrigonometricFunctions<T>
         {
             var _2 = T.CreateChecked(2);
             var velocity2 = velocity.Value * velocity.Value;
             T temp = velocity2 * T.Sin(radian.Value * _2);
-            temp /= MetrePerSecondSquared<T>.GravitationalAcceleration.Value;
-            return new Metre<T>(temp);
+            return new Metre<T>(temp / MetrePerSecondSquared<T>.G.Value);
         }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります

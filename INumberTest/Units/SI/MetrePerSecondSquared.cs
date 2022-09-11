@@ -13,9 +13,13 @@ namespace INumberTest.Units.SI
     {
         #region 定数
         /// <summary>
-        /// 重力加速度
+        /// 地球の重力加速度
         /// </summary>
         public static readonly MetrePerSecondSquared<T> GravitationalAcceleration = new(T.CreateChecked(9.80665m));
+        /// <summary>
+        /// 地球の重力加速度
+        /// </summary>
+        public static readonly MetrePerSecondSquared<T> G = GravitationalAcceleration;
         #endregion 定数
 
         #region プロパティ
