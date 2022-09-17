@@ -59,6 +59,26 @@ namespace CibsoleApp
                 Console.WriteLine($"velocity={velocity}");
                 Console.WriteLine($"length={length}");
             }
+
+            {
+                var arcDegree = new ArcDegree<float>(45);
+                var velocity = new MetrePerSecond<float>(123);
+                var length = ParabolicMotionLength<float>(velocity, arcDegree);
+                Console.WriteLine($"ParabolicMotionLength Test");
+                Console.WriteLine($"arcDegree={arcDegree}");
+                Console.WriteLine($"velocity={velocity}");
+                Console.WriteLine($"length={length}");
+            }
+
+            {
+                var arcDegree = new ArcDegree<Half>((Half)45);
+                var velocity = new MetrePerSecond<Half>((Half)123);
+                var length = ParabolicMotionLength<Half>(velocity, arcDegree);
+                Console.WriteLine($"ParabolicMotionLength Test");
+                Console.WriteLine($"arcDegree={arcDegree}");
+                Console.WriteLine($"velocity={velocity}");
+                Console.WriteLine($"length={length}");
+            }
         }
         /// <summary>
         /// 放物運動の距離を計算する。
