@@ -2,6 +2,7 @@
 using INumberTest.Units;
 using INumberTest.Units.NonSI;
 using INumberTest.Units.SI;
+using INumberTest.Units.SI.Symbol;
 using System.Numerics;
 //using static INumberTest.Units.Symbol<double>;
 
@@ -105,6 +106,15 @@ namespace CibsoleApp
             var velocity2 = velocity.Value * velocity.Value;
             T temp = velocity2 * T.Sin(radian.Value * _2);
             return new Metre<T>(temp / MetrePerSecondSquared<T>.G.Value);
+        }
+        static void TestSymbol()
+        {
+            var length = 123.m();
+            var mass = 123.kg();
+            var time = 123.s();
+            var energy = 123.J();
+            var force = 123.N();
+            var angle = 123.rad();
         }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります
