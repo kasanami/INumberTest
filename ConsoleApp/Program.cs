@@ -109,12 +109,12 @@ namespace CibsoleApp
         }
         static void TestSymbol()
         {
-            var length = 123.m();
-            var mass = 123.kg();
-            var time = 123.s();
-            var energy = 123.J();
-            var force = 123.N();
-            var angle = 123.rad();
+            var length = 123.m();// メートル
+            var mass = 123.kg();// キログラム
+            var time = 123.s();// 秒
+            var energy = 123.J();// ジュール
+            var force = 123.N();// ニュートン
+            var angle = 123.rad();// ラジアン
         }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります
