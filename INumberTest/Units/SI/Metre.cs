@@ -59,6 +59,13 @@ namespace INumberTest.Units.SI
         {
             return quantity.Value * T.CreateChecked(value);
         }
+        /// <summary>
+        /// 距離/時間=速さ
+        /// </summary>
+        public static MetrePerSecond<T> operator /(Metre<T> length, Second<T> time)
+        {
+            return length.Value / time.Value;
+        }
         #endregion 演算子
 
         #region 型変換

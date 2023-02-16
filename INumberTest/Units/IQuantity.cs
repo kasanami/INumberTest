@@ -6,7 +6,7 @@ namespace INumberTest.Units
     /// 何らかの量
     /// </summary>
     /// <typeparam name="T">数値型</typeparam>
-    public interface IQuantity<T>where T : INumber<T>
+    public interface IQuantity<T> where T : INumber<T>
     {
         #region プロパティ
         /// <summary>
@@ -26,5 +26,6 @@ namespace INumberTest.Units
         /// </summary>
         T Value { get; set; }
         #endregion プロパティ
+        static virtual IQuantity<T> From(T value) { return new Quantity<T>(value); }
     }
 }

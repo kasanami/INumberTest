@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using INumberTest.Units.SI;
+using System.Numerics;
 
 namespace INumberTest.Units
 {
@@ -94,5 +95,35 @@ namespace INumberTest.Units
             return new Quantity<T>(value);
         }
         #endregion 型変換
+        #region 数値演算
+        /// <summary>
+        /// 乗算
+        /// </summary>
+        public static Quantity<T> operator *(T value, Quantity<T> quantity)
+        {
+            return new Newton<T>(value * quantity.Value);
+        }
+        /// <summary>
+        /// 乗算
+        /// </summary>
+        public static Quantity<T> operator *(Quantity<T> quantity, T value)
+        {
+            return new Newton<T>(quantity.Value * value);
+        }
+        /// <summary>
+        /// 除算
+        /// </summary>
+        public static Quantity<T> operator /(T value, Quantity<T> quantity)
+        {
+            return new Newton<T>(value / quantity.Value);
+        }
+        /// <summary>
+        /// 除算
+        /// </summary>
+        public static Quantity<T> operator /(Quantity<T> quantity, T value)
+        {
+            return new Newton<T>(quantity.Value / value);
+        }
+        #endregion
     }
 }

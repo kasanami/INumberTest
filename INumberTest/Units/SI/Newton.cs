@@ -60,6 +60,13 @@ namespace INumberTest.Units.SI
         {
             return new Newton<T>(quantity.Value * value);
         }
+        /// <summary>
+        /// 乗算
+        /// </summary>
+        public static Newton<T> operator *(Newton<T> quantity, T value)
+        {
+            return new Newton<T>(quantity.Value * value);
+        }
         #endregion 演算子
 
         #region 型変換
