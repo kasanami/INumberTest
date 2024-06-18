@@ -32,6 +32,31 @@ namespace INumberTest.Tests
             var c = Math<decimal>.Sqrt(2);
             Assert.AreEqual(1.4142135623730950488016887242m, c);
         }
+
+        [TestMethod()]
+        public void PowTest()
+        {
+            var a = Math<float>.Pow(10,2);
+            Assert.AreEqual(100.0f, a);
+            var b = Math<double>.Pow(10, 2);
+            Assert.AreEqual(100.0, b);
+            var c = Math<decimal>.Pow(10, 2);
+            Assert.AreEqual(100.0m, c);
+
+            var d = Math<float>.Pow(10, 0);
+            Assert.AreEqual(1.0f, d);
+            var e = Math<double>.Pow(10, 0);
+            Assert.AreEqual(1.0, e);
+            var f = Math<decimal>.Pow(10, 0);
+            Assert.AreEqual(1.0m, f);
+
+            var g = Math<float>.Pow(10, -2);
+            Assert.AreEqual(0.01f, g);
+            var h = Math<double>.Pow(10, -2);
+            Assert.AreEqual(0.01, h);
+            var i = Math<decimal>.Pow(10, -2);
+            Assert.AreEqual(0.01m, i);
+        }
     }
 #pragma warning restore CA2252 // この API では、プレビュー機能をオプトインする必要があります
 }

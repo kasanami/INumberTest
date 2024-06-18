@@ -48,6 +48,33 @@ namespace INumberTest
         #endregion　Is*
 
         /// <summary>
+        /// べき乗
+        /// </summary>
+        /// <param name="radix">底</param>
+        /// <param name="exponent">指数</param>
+        /// <returns></returns>
+        public static T Pow(T radix, int exponent)
+        {
+            T temp = T.One;
+            if (exponent < 0)
+            {
+                exponent = -exponent;
+                for (int i = 0; i < exponent; i++)
+                {
+                    temp /= radix;
+                }
+            }
+            else if (exponent > 0)
+            {
+                for (int i = 0; i < exponent; i++)
+                {
+                    temp *= radix;
+                }
+            }
+            return temp;
+        }
+
+        /// <summary>
         /// 合計を計算する
         /// </summary>
         /// <param name="values">合計する値</param>
