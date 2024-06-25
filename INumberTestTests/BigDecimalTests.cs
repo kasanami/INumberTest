@@ -15,7 +15,7 @@ namespace INumberTest.Tests
             Assert.AreEqual(0.5m, (decimal)BigDecimal.ZeroPointFive);
         }
         [TestMethod()]
-        public void SumTest()
+        public void AdditionTest()
         {
             {
                 BigDecimal a = 123;
@@ -29,6 +29,28 @@ namespace INumberTest.Tests
                 BigDecimal c = a + b;
                 BigDecimal d = BigDecimal.Parse("158456325028528675187087900670");
                 Assert.AreEqual(d, c);
+            }
+            {
+                BigDecimal a = decimal.MaxValue;
+                BigDecimal b = decimal.MinValue;
+                BigDecimal c = a + b;
+                Assert.AreEqual(0, c);
+            }
+        }
+        [TestMethod()]
+        public void SubtractionTest()
+        {
+            {
+                BigDecimal a = 123;
+                BigDecimal b = 111;
+                BigDecimal c = a - b;
+                Assert.AreEqual(12, c);
+            }
+            {
+                BigDecimal a = decimal.MaxValue;
+                BigDecimal b = decimal.MaxValue;
+                BigDecimal c = a - b;
+                Assert.AreEqual(0, c);
             }
         }
         [TestMethod()]
